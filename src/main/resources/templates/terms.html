@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<title>Terms & Conditions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">  
+<link href="css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons --> 
+<!-- //Custom Theme files --> 
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>  
+<!-- //js -->
+<!-- web-fonts -->   
+<link href="http://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet"> 
+<link href="http://fonts.googleapis.com/css?family=Yantramanav:100,300,400,500,700,900" rel="stylesheet">
+<!-- //web-fonts -->
+</head>
+<body>
+<!-- banner -->
+<div class="banner">
+	<!-- header -->
+	<div class="header">
+		<div class="w3ls-header"><!-- header-one -->
+			<div class="container">
+				<div class="w3ls-header-left">
+					<p>最美味的佳肴奉献给最美丽的你</p>
+				</div>
+				<div class="w3ls-header-right">
+					<ul>
+						<li class="head-dpdn">
+							<i class="fa fa-phone" aria-hidden="true"></i> 联系我们: +01 222 33345
+						</li>
+						<li class="head-dpdn" th:if="${session.user == null}">
+							<a th:href="@{/user/login}"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</a>
+						</li>
+						<li class="head-dpdn" th:if="${session.user != null}">
+							<a th:href="@{/user/myOrder}"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> <span th:text="${session.user.username}"></span></a>
+						</li>
+						<li class="head-dpdn">
+							<a th:href="@{/toSignup}"><i class="fa fa-user-plus" aria-hidden="true"></i> 注册</a>
+						</li>
+						<li class="head-dpdn">
+							<a th:href="@{/offers}"><i class="fa fa-gift" aria-hidden="true"></i> 留言</a>
+						</li>
+						<li class="head-dpdn">
+							<a th:href="@{/help}"><i class="fa fa-question-circle" aria-hidden="true"></i> 帮助</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<!-- //header-one -->
+		<!-- navigation -->
+		<div class="navigation agiletop-nav">
+			<div class="container">
+				<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header w3l_logo">
+						<h1><a th:href="@{/index}">美味屋</a></h1>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a th:href="@{/index}" class="active">首页</a></li>
+							<!-- Mega Menu -->
+							<li><a th:href="@{/user/showMenu}" class="dropdown-toggle">菜单</a></li>
+							<li><a th:href="@{/about}">关于我们</a></li>
+							<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">图标 <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a th:href="@{/icons}">Web Icons</a></li>
+									<li><a th:href="@{/codes}">Short Codes</a></li>
+								</ul>
+							</li>
+							<li><a th:href="@{/contact}">留言</a></li>
+						</ul>
+					</div>
+					<div class="cart cart box_1">
+						<a th:href="@{/user/showCar}">
+							<button class="w3view-cart" ><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+						</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- //navigation -->
+	</div>
+	<!-- //header-end -->
+	<!-- banner-text -->
+	<div class="banner-text">
+		<div class="container">
+			<h2>最美味的佳肴 <br> <span>奉献给最美丽的你</span></h2>
+		</div>
+	</div>
+</div>
+<!-- //banner -->
+
+<!-- breadcrumb -->
+	<div class="container">	
+		<ol class="breadcrumb w3l-crumbs">
+			<li><a href="#"><i class="fa fa-home"></i> Home</a></li> 
+			<li class="active">Terms & Conditions</li>
+		</ol>
+	</div>
+	<!-- //breadcrumb -->
+	<!-- privacy-page -->
+	<div class="privacy about">
+		<div class="container"> 
+			<h3 class="w3ls-title w3ls-title1">Terms & Conditions</h3>  
+			<div class="privacy-w3row">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ornare turpis ut porta aliquet. Morbi quis dictum lacus. Donec scelerisque lacus nec lobortis tempor. Morbi orci arcu, ullamcorper ut arcu vel, ultricies congue lacus. Phasellus porta cursus tempor. Nunc ultricies sapien nec est ornare pulvinar. Vivamus mollis faucibus purus sed blandit. Praesent fermentum dapibus risus id rutrum. Aliquam rutrum vel nulla eu fringilla.</p>
+				<p>Nunc ornare turpis ut porta aliquet. Morbi quis dictum lacus. Donec scelerisque lacus nec lobortis tempor. Morbi orci arcu, ullamcorper ut arcu vel, ultricies congue lacus. Phasellus porta cursus tempor. Nunc ultricies sapien nec est ornare pulvinar. Vivamus mollis faucibus purus sed blandit. Praesent fermentum dapibus risus id rutrum. Aliquam rutrum vel nulla eu fringilla. Curabitur efficitur justo a est tempor, pretium accumsan leo sagittis. Ut imperdiet sapien velit, a auctor neque laoreet sed. Praesent ornare nulla sit amet ullamcorper vulputate. Suspendisse vitae magna finibus, egestas eros quis, ornare risus. Duis magna ex, ultrices quis tellus non, commodo eleifend odio. Donec et faucibus risus. Aliquam laoreet justo sapien. </p>
+				<h5>PRICES AND PAYMENT</h5>  
+				<p>Maecenas malesuada leo dui, at venenatis ligula sodales ut. Cras a feugiat orci. </p>
+				<p>Pellentesque metus enim, aliquet eu felis sed, pretium ultrices ante convallis nec turpis.</p>
+				<p>Phasellus imperdiet nibh et lorem tincidunt aliquam. Integer elementum purus non venenatis volutpat. Curabitur sit amet neque sed arcu pretium iaculis. Phasellus posuere egestas tortor a molestie. Nulla sed urna dignissim, maximus magna et, elementum metus. Ut dolor lorem, mattis eu consectetur non, euismod quis nulla. </p>			
+				<h5>SECURITY</h5>  
+				<p>Phasellus imperdiet nibh et lorem tincidunt aliquam. Integer elementum purus non venenatis volutpat. Curabitur sit amet neque sed arcu pretium iaculis. Phasellus posuere egestas tortor a molestie. Nulla sed urna dignissim, maximus magna et, elementum metus. Ut dolor lorem, mattis eu consectetur non, euismod quis nulla. </p>
+				<p>Donec scelerisque lacus nec lobortis tempor donec et faucibus risus. Aliquam laoreet justo sapien. </p>
+				<p>Pellentesque quis sagittis est. Nam placerat ante at nunc ornare, sed faucibus odio interdum. Nam viverra, purus ac ullamcorper convallis, lorem erat consequat enim, at pharetra magna. </p>
+				<h5>ORDER CONDITIONS, DELIVERY</h5>  
+				<p>Maecenas malesuada leo dui, at venenatis ligula sodales ut. Cras a feugiat orci. </p>
+				<p>Pellentesque metus enim, aliquet eu felis sed, pretium ultrices ante convallis nec turpis.</p>
+			</div>
+		</div>
+	</div>
+	<!-- //privacy-page -->  
+	<!-- subscribe -->
+	<div class="subscribe agileits-w3layouts"> 
+		<div class="container">
+			<div class="col-md-6 social-icons w3-agile-icons">
+				<h4>Keep in touch</h4>  
+				<ul>
+					<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
+					<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
+					<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
+					<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
+					<li><a href="#" class="fa fa-rss icon rss"> </a></li> 
+				</ul> 
+				<ul class="apps"> 
+					<li><h4>Download Our app : </h4> </li>
+					<li><a href="#" class="fa fa-apple"></a></li>
+					<li><a href="#" class="fa fa-windows"></a></li>
+					<li><a href="#" class="fa fa-android"></a></li>
+				</ul> 
+			</div> 
+			<div class="col-md-6 subscribe-right">
+				<h3 class="w3ls-title">Subscribe to Our <br><span>Newsletter</span></h3>  
+				<form action="#" method="post"> 
+					<input type="email" name="email" placeholder="Enter your Email..." required="">
+					<input type="submit" value="Subscribe">
+					<div class="clearfix"> </div> 
+				</form> 
+				<img src="images/i1.png" class="sub-w3lsimg" alt=""/>
+			</div>
+			<div class="clearfix"> </div> 
+		</div>
+	</div>
+	<!-- //subscribe --> 
+	<!-- footer -->
+	<div class="footer agileits-w3layouts">
+		<div class="container">
+			<div class="w3_footer_grids">
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>company</h3>
+					<ul>
+						<li><a href="about.html">About Us</a></li>
+						<li><a href="contact.html">Contact Us</a></li>  
+						<li><a href="careers.html">Careers</a></li>  
+						<li><a href="help.html">Partner With Us</a></li>   
+					</ul>
+				</div> 
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>help</h3>
+					<ul>
+						<li><a href="faq.html">FAQ</a></li> 
+						<li><a href="login.html">Returns</a></li>   
+						<li><a href="login.html">Order Status</a></li> 
+						<li><a href="offers.html">Offers</a></li> 
+					</ul>  
+				</div>
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>policy info</h3>
+					<ul>  
+						<li><a href="terms.html">Terms & Conditions</a></li>  
+						<li><a href="privacy.html">Privacy Policy</a></li>
+						<li><a href="login.html">Return Policy</a></li> 
+					</ul>    
+				</div>
+				<div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+					<h3>Menu</h3> 
+					<ul>
+						<li><a href="menu.html">All Day Menu</a></li> 
+						<li><a href="menu.html">Lunch</a></li>
+						<li><a href="menu.html">Dinner</a></li>
+						<li><a href="menu.html">Flavours</a></li> 
+					</ul>  
+				</div> 
+				<div class="clearfix"> </div>
+			</div>
+		</div> 
+	</div>
+	<div class="copyw3-agile"> 
+		<div class="container">
+			<p>Copyright &copy; 2017.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+		</div>
+	</div>
+	<!-- //footer -->
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+        w3ls.render();
+
+        w3ls.cart.on('w3sb_checkout', function (evt) {
+        	var items, len, i;
+
+        	if (this.subtotal() > 0) {
+        		items = this.items();
+
+        		for (i = 0, len = items.length; i < len; i++) { 
+        		}
+        	}
+        });
+    </script>  
+	<!-- //cart-js -->	
+	<!-- start-smooth-scrolling -->
+	<script src="js/SmoothScroll.min.js"></script>  
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>	
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+			
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+	<!-- //end-smooth-scrolling -->	  
+	<!-- smooth-scrolling-of-move-up -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up --> 
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>

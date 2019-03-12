@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title>  
+    <link rel="stylesheet" href="/css/pintuer.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/pintuer.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</head>
+<body>
+<div style="margin-left: 600px">
+    <form th:action="@{/admin/findOrderQuery}">
+        <div class="form-group">
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="name" name="id" placeholder="请输入订单编号"/>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-default" type="submit" placeholder="查询">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div style="width: 100%;height: 50px"></div>
+<div style="height: 350px">
+    <table class="table table-hover text-center">
+        <tr class="active">
+            <th>订单编号</th>
+            <th>用户</th>
+            <th>联系方式</th>
+            <th>总计</th>
+            <th>状态</th>
+            <th>下单时间</th>
+            <th width="250">操作</th>
+        </tr>
+
+        <tr th:each="order,iterStat:${orderList}">
+            <td th:text="${order.id}"></td>
+            <td th:text="${order.user.username}"></td>
+            <td th:text="${order.user.phone}"></td>
+            <td th:text="${order.total}"></td>
+            <td th:text="${order.state}"></td>
+            <td th:text="${order.orderTime}"></td>
+            <td>
+                <div class="button-group">
+                    <a type="button" class="button border-main" onclick="editOne(this)"><span class="icon-edit"></span>查看</a>
+                    <a class="button border-red" th:href="@{'/admin/delOrder?id='+${order.id}}" ><span class="icon-trash-o"></span> 删除</a>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                    <h4 class="modal-title" id="myModalLabel">订单条目详情</h4>
+                                </div>
+                            <table class="table">
+                                <tr>
+                                    <td>收货人</td>
+                                    <td colspan="3" th:text="${order.address.name}"></td>
+                                </tr>
+                                <tr>
+                                    <td>联系电话</td>
+                                    <td colspan="3" th:text="${order.address.phone}"></td>
+                                </tr>
+                                <tr>
+                                    <td>收货地址</td>
+                                    <td colspan="3" th:text="${order.address.address}"></td>
+                                </tr>
+                                <tr th:each="item,iterStat:${order.orderItems}">
+                                    <td><img style="width: 30px;height: 30px" th:src="@{${item.product.picture}}"></td>
+                                    <td  th:text="${item.product.productName}"></td>
+                                    <td  style="text-align: center" th:text="'×' + ${item.count}"></td>
+                                    <td  th:text="'￥'+ ${item.subtotal}"></td>
+                                </tr>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<div align="center">
+    <ul class="pagination">
+        <!-- 上一页 -->
+        <li class="page-item" th:classappend="${orderList.number lt 1} ? 'disabled' : ''">
+            <a th:href="'/admin/findOrderQuery?pageNumber=' + ${orderList.number - 1}" class="page-link"  aria-label="Previous">
+                <span aria-hidden="true">«</span>
+            </a>
+        </li>
+
+        <!-- 迭代生成页码 -->
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, orderList.totalPages)}"
+            th:classappend="${(orderList.number + 1) eq i} ? 'active' : ''" >
+            <a class="page-link"  th:href="'/admin/findOrderQuery?pageNumber=' + ${i - 1}">
+                <span th:text="${i}"></span>
+            </a>
+        </li>
+
+        <!-- 下一页 -->
+        <li class="page-item" th:classappend="${orderList.number ge (orderList.totalPages - 1)} ? 'disabled' : ''">
+            <a th:href="'/admin/findOrderQuery?pageNumber=' + ${orderList.number + 1}" class="page-link" aria-label="Next">
+                <span aria-hidden="true">»</span>
+            </a>
+        </li>
+        <li class="page-item"><span th:text="'共'+${orderList.totalPages}+'页 / '+${orderList.totalElements}+' 条'"></span></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function editOne(obj) {
+        $(obj).parent().find("#myModal").modal();
+    }
+</script>
+</body>
+</html>

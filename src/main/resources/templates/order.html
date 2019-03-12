@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="/css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons -->
+    <!-- //Custom Theme files -->
+    <!-- js -->
+    <script src="/js/jquery-2.2.3.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <!-- //js -->
+    <!-- web-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Yantramanav:100,300,400,500,700,900" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+<!-- banner -->
+<div class="banner">
+    <!-- header -->
+    <div class="header">
+        <div class="w3ls-header"><!-- header-one -->
+            <div class="container">
+                <div class="w3ls-header-left">
+                    <p>最美味的佳肴奉献给最美丽的你</p>
+                </div>
+                <div class="w3ls-header-right">
+                    <ul>
+                        <li class="head-dpdn">
+                            <i class="fa fa-phone" aria-hidden="true"></i> 联系我们: +01 222 33345
+                        </li>
+                        <li class="head-dpdn" th:if="${session.user == null}">
+                            <a th:href="@{/user/login}"><i class="fa fa-sign-in" aria-hidden="true"></i> 登录</a>
+                        </li>
+                        <li class="head-dpdn" th:if="${session.user != null}">
+                            <a th:href="@{/user/myOrder}"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> <span th:text="${session.user.username}"></span></a>
+                        </li>
+                        <li class="head-dpdn">
+                            <a th:href="@{/toSignup}"><i class="fa fa-user-plus" aria-hidden="true"></i> 注册</a>
+                        </li>
+                        <li class="head-dpdn">
+                            <a th:href="@{/offers}"><i class="fa fa-gift" aria-hidden="true"></i> 折扣</a>
+                        </li>
+                        <li class="head-dpdn">
+                            <a th:href="@{/help}"><i class="fa fa-question-circle" aria-hidden="true"></i> 帮助</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <!-- //header-one -->
+        <!-- navigation -->
+        <div class="navigation agiletop-nav">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header w3l_logo">
+                        <h1><a th:href="@{/index}">美味屋</a></h1>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/index}" class="active">首页</a></li>
+                            <!-- Mega Menu -->
+                            <li><a th:href="@{/user/showMenu}" class="dropdown-toggle">菜单</a></li>
+                            <li><a th:href="@{/about}">关于我们</a></li>
+                            <li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">图标 <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a th:href="@{/icons}">Web Icons</a></li>
+                                    <li><a th:href="@{/codes}">Short Codes</a></li>
+                                </ul>
+                            </li>
+                            <li><a th:href="@{/contact}">留言</a></li>
+                        </ul>
+                    </div>
+                    <div class="cart cart box_1">
+                        <a th:href="@{/user/showCar}">
+                            <button class="w3view-cart" ><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- //navigation -->
+    </div>
+    <!-- //header-end -->
+    <!-- banner-text -->
+    <div class="banner-text">
+        <div class="container">
+            <h2>最美味的佳肴 <br> <span>奉献给最美丽的你</span></h2>
+        </div>
+    </div>
+</div>
+<!-- //banner -->
+
+<!-- breadcrumb -->
+<div class="container">
+    <ol class="breadcrumb w3l-crumbs">
+        <li><a th:href="@{/index}"><i class="fa fa-home"></i> 首页</a></li>
+        <li class="active">订单</li>
+    </ol>
+</div>
+
+    <div style="margin-top: 50px">
+        <form th:action="@{/user/changeOrder}">
+            <input type="hidden" name="id" th:value="${order.id}">
+        <table  class="table table-striped" style="text-align:left;width: 60%;" align="center">
+            <tr class="ssss">
+                <td style="width: 15%"></td>
+                <td style="width: 25%">收货人:</td>
+                <td style="width: 5%"></td>
+                <td style="width: 20%;text-align: center" th:text="${order.address.name}"></td>
+                <td style="width: 15%;text-align: center"></td>
+            </tr>
+            <tr>
+                <td style="width: 15%"></td>
+                <td style="width: 25%">电话:</td>
+                <td style="width: 5%"></td>
+                <td style="width: 20%;text-align: center" th:text="${order.address.phone}"></td>
+                <td style="width: 15%"></td>
+            </tr>
+            <tr>
+                <td style="width: 15%"></td>
+                <td style="width: 25%" >地址:</td>
+                <td style="width: 5%"></td>
+                <td style="width: 20%;text-align: center" th:text="${order.address.address}"> </td>
+                <td style="width: 15%"><span class="glyphicon glyphicon-pencil">编辑</span></td>
+            </tr>
+            <tr>
+                <td style="width: 15%"></td>
+                <td style="width: 25%">支付:</td>
+                <td style="width: 5%"></td>
+                <td style="width: 20%;text-align: center">
+                    <input type="radio" checked="checked" name="pay" value="在线支付" /> 在线支付
+                    <input type="radio" name="pay" value="货到付款" /> 货到付款
+                </td>
+                <td style="width: 15%"></td>
+            </tr>
+            <tr th:each="item:${order.orderItems}">
+                <td style="width: 15%"></td>
+                <td style="width: 25%" th:text="${item.product.productName}"></td>
+                <td style="width: 5%;text-align: center" th:text="'x'+${item.count}"></td>
+                <td style="width: 20%;text-align: center" th:text="${item.subtotal}"></td>
+                <td style="width: 15%"></td>
+            </tr>
+            <tr>
+                <td style="width: 15%"></td>
+                <td style="width: 25%;">总计:</td>
+                <td style="width: 5%"></td>
+                <td style="width: 20%;text-align: center" th:text="${order.total}"></td>
+                <td style="width: 15%"></td>
+            </tr>
+        </table>
+            <center style="margin-bottom: 150px; margin-top: 50px">
+                <input type="submit" class="btn btn-info" style="width: 200px" value="确认订单">
+            </center>
+        </form>
+    </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                <h4 class="modal-title" id="myModalLabel">编辑收获地址</h4>
+            </div>
+            <div th:each="address,iterStat:${addressList}">
+                <form th:action="@{/user/changeOrderAddress}">
+                    <input type="hidden" name="id" th:value="${address.id}">
+                    <input type="hidden" name="orderId" th:value="${order.id}">
+                    <input type="text" name="name" th:value="${address.name}" style="border: 0px">
+                    <input type="text" name="phone" th:value="${address.phone}" style="border: 0px">
+                    <input type="text" name="path" th:value="${address.address}" style="border: 0px">
+                    <button type="submit">选择</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="submit" id="btn_submit" class="btn btn-primary">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- subscribe -->
+<div class="subscribe agileits-w3layouts">
+    <div class="container">
+        <div class="col-md-6 social-icons w3-agile-icons">
+            <h4>Keep in touch</h4>
+            <ul>
+                <li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
+                <li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
+                <li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
+                <li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
+                <li><a href="#" class="fa fa-rss icon rss"> </a></li>
+            </ul>
+            <ul class="apps">
+                <li><h4>Download Our app : </h4> </li>
+                <li><a href="#" class="fa fa-apple"></a></li>
+                <li><a href="#" class="fa fa-windows"></a></li>
+                <li><a href="#" class="fa fa-android"></a></li>
+            </ul>
+        </div>
+        <div class="col-md-6 subscribe-right">
+            <h3 class="w3ls-title">Subscribe to Our <br><span>Newsletter</span></h3>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Enter your Email..." required="">
+                <input type="submit" value="Subscribe">
+                <div class="clearfix"> </div>
+            </form>
+            <img src="/images/i1.png" class="sub-w3lsimg" alt=""/>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- footer -->
+<div class="footer agileits-w3layouts">
+    <div class="container">
+        <div class="w3_footer_grids">
+            <div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+                <h3>company</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="help.html">Partner With Us</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+                <h3>help</h3>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="login.html">Returns</a></li>
+                    <li><a href="login.html">Order Status</a></li>
+                    <li><a href="offers.html">Offers</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+                <h3>policy info</h3>
+                <ul>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="login.html">Return Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-3 footer-grids w3-agileits">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="menu.html">All Day Menu</a></li>
+                    <li><a href="menu.html">Lunch</a></li>
+                    <li><a href="menu.html">Dinner</a></li>
+                    <li><a href="menu.html">Flavours</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function(){
+      /*  $(".glyphicon-pencil").click(function(){
+            $(".address").attr("disabled",false)
+            $(".address").focus()
+        })*/
+
+        $(".glyphicon-pencil").click(function () {
+            $("#myModal").modal();
+         })
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>网站信息</title>  
+    <link rel="stylesheet" href="/css/pintuer.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/pintuer.js"></script>  
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong></div>
+  <div class="padding border-bottom">  
+  <a class="button border-yellow" href="/admin/toAddProduct"><span class="icon-plus-square-o"></span> 添加内容</a>
+  </div> 
+  <table class="table table-hover text-center">
+    <tr>
+      <th width="5%">ID</th>     
+      <th>名称</th>
+      <th>菜系</th>
+      <th>价格</th>
+      <th>图片</th>
+      <th>折扣</th>
+      <th>描述</th>
+      <th width="250">操作</th>
+    </tr>
+   
+    <tr th:each="product,iterStat:${productList}">
+      <td th:text="${product.id}"></td>
+      <td th:text="${product.productName}"></td>
+      <td th:text="${product.menuCode.menu}"></td>
+      <td th:text="${product.price}"></td>
+      <td><img width="50px" height="50px" th:src="@{${product.picture}}"/></td>
+      <td th:text="${product.discount}"></td>
+      <td th:text="${product.description}"></td>
+      <td>
+      <div class="button-group">
+      <a type="button" class="button border-main" th:href="'/admin/toUpdateProduct?id='+${product.id}"><span class="icon-edit"></span>修改</a>
+       <a class="button border-red" th:href="'/admin/delProduct?id='+${product.id}"><span class="icon-trash-o"></span> 删除</a>
+      </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<!--
+<div th:fragment="pager">
+    <div class="text-right" th:with="baseUrl=${#httpServletRequest.getRequestURL().toString()},pars=${#httpServletRequest.getQueryString() eq null ? '' : new String(#httpServletRequest.getQueryString().getBytes('iso8859-1'), 'UTF-8')}">
+        <ul style="margin:0px;" class="pagination" th:with="newPar=${new java.lang.String(pars eq null ? '' : pars).replace('pageNumber='+(productList.number), '')},
+                                                curTmpUrl=${baseUrl+'?'+newPar},
+                                                curUrl=${curTmpUrl.endsWith('&amp;') ? curTmpUrl.substring(0, curTmpUrl.length()-1):curTmpUrl}" >
+            &lt;!&ndash;<li th:text="${pars}"></li>&ndash;&gt;
+
+            <li><a  th:href="@{/admin/showProductByPage?pageNumber=1}">首页</a></li>
+            <li th:if="${productList.hasPrevious()}"><a th:href="@{/admin/showProductByPage?pageNumber=${productList.number-1})}">上一页</a></li>
+
+            &lt;!&ndash;总页数小于等于5&ndash;&gt;
+            <div th:if="${(productList.totalPages le 10) and (productList.totalPages gt 0)}" th:remove="tag">
+                <div th:each="pg : ${#numbers.sequence(0, productList.totalPages - 1)}" th:remove="tag">
+                        <span th:if="${pg eq productList.getNumber()}" th:remove="tag">
+                            <li class="active"><span class="current_page line_height" th:text="${pg+1}">${pageNumber}</span></li>
+                        </span>
+                    <span th:unless="${pg eq productList.getNumber()}" th:remove="tag">
+                            <li><a  th:href="@{${curUrl}(pageNumber=${pg})}" th:text="${pg+1}"></a></li>
+                        </span>
+                </div>
+            </div>
+
+            &lt;!&ndash; 总数数大于10时 &ndash;&gt;
+            <div th:if="${productList.totalPages gt 10}" th:remove="tag">
+                <li th:if="${productList.number-2 ge 0}"><a th:href="@{${curUrl}(pageNumber=${productList.number}-2)}" th:text="${productList.number-1}"></a></li>
+                <li th:if="${productList.number-1 ge 0}"><a th:href="@{${curUrl}(pageNumber=${productList.number}-1)}" th:text="${productList.number}"></a></li>
+                <li class="active"><span class="current_page line_height" th:text="${productList.number+1}"></span></li>
+                <li th:if="${productList.number+1 lt productList.totalPages}"><a th:href="@{${curUrl}(pageNumber=${productList.number}+1)}" th:text="${productList.number+2}"></a></li>
+                <li th:if="${productList.number+2 lt productList.totalPages}"><a th:href="@{${curUrl}(pageNumber=${productList.number}+2)}" th:text="${productList.number+3}"></a></li>
+            </div>
+
+
+            <li th:if="${productList.hasNext()}"><a th:href="@{${curUrl}(pageNumber=${productList.number+1})}">下一页</a></li>
+            <li><a th:href="${productList.totalPages le 0 ? curUrl+'pageNumber=0':curUrl+'&amp;pageNumber='+(productList.totalPages-1)}">尾页</a></li>
+            <li><span th:text="'共'+${productList.totalPages}+'页 / '+${productList.totalElements}+' 条'"></span></li>
+        </ul>
+    </div>
+</div>-->
+<div align="center" style="margin-top: 10px">
+<ul class="pagination">
+    <!-- 上一页 -->
+    <li th:classappend="${productList.number lt 1} ? 'disabled' : ''">
+        <a th:href="'/admin/showProductByPage?pageNumber=' + ${productList.number - 1}" class="page-link"  aria-label="Previous">
+            <span aria-hidden="true">«</span>
+        </a>
+    </li>
+
+    <!-- 迭代生成页码 -->
+    <li th:each="i : ${#numbers.sequence(1, productList.totalPages)}"
+        th:classappend="${(productList.number + 1) eq i} ? 'active' : ''" >
+        <a class="page-link"  th:href="'/admin/showProductByPage?pageNumber=' + ${i - 1}">
+            <span th:text="${i}"></span>
+        </a>
+    </li>
+
+    <!-- 下一页 -->
+    <li th:classappend="${productList.number ge (productList.totalPages - 1)} ? 'disabled' : ''">
+        <a th:href="'/admin/showProductByPage?pageNumber=' + ${productList.number + 1}" class="page-link" aria-label="Next">
+            <span aria-hidden="true">»</span>
+        </a>
+    </li>
+    <li><span th:text="'共'+${productList.totalPages}+'页 / '+${productList.totalElements}+' 条'"></span></li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chao.bysj.mapper.MenuMapper" >
+    <!--配置一个resultMap 指定返回的类型 -->
+    <resultMap id="menuList" type="com.chao.bysj.po.Menu">
+        <id column="id" property="id" />
+        <result column="menu" property="menu" />
+        <result column="code" property="code" />
+    </resultMap>
+
+    <insert id="addMenu" parameterType="com.chao.bysj.po.Menu">
+        insert into menu(menu,code) values(#{menu},#{code})
+    </insert>
+
+    <select id="selectMenu" resultMap="menuList">
+        select * from menu
+    </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.chao.bysj.po.Menu">
+        select * from menu where id = #{id}
+    </select>
+    <select id="selectByName" parameterType="java.lang.String" resultType="com.chao.bysj.po.Menu">
+        select * from menu where menu = #{menu}
+    </select>
+    <select id="selectByCode" parameterType="java.lang.Integer" resultType="com.chao.bysj.po.Menu">
+        select * from menu where code = #{code}
+    </select>
+    <update id="updateMenu" parameterType="com.chao.bysj.po.Menu">
+        UPDATE menu SET
+         menu =  #{menu} ,
+         code = #{code}
+         WHERE id = #{id}
+    </update>
+    <delete id="delMenu" parameterType="java.lang.Integer">
+        DELETE FROM menu WHERE id = #{id}
+    </delete>
+
+</mapper>
