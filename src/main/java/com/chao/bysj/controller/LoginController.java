@@ -2,7 +2,6 @@ package com.chao.bysj.controller;
 
 import com.chao.bysj.po.User;
 import com.chao.bysj.service.LoginService;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,7 +1,6 @@
 package com.chao.bysj.repository;
 
 import com.chao.bysj.po.Product;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

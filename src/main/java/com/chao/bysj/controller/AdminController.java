@@ -9,6 +9,8 @@ import com.chao.bysj.service.ManuManageService;
 import com.chao.bysj.service.OrderManageService;
 import com.chao.bysj.service.ProductManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +26,17 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/admin")
+@PropertySource(value="classpath:application.properties",encoding = "UTF-8")
 public class AdminController {
     @Autowired
-    ManuManageService manuManageService;
+    private ManuManageService manuManageService;
     @Autowired
-    ProductManageService productManageService;
+    private ProductManageService productManageService;
     @Autowired
-    OrderManageService orderManageService;
+    private OrderManageService orderManageService;
 
-
+    @Value("${file.img.path}")
+    private String filePath;
     /**
      * 打开密码修改界面
      * @return
@@ -129,19 +133,18 @@ public class AdminController {
         // 获取文件的后缀名
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         System.out.println("上传的后缀名为：" + suffixName);
-        // 文件上传后的路径
-        String filePath = "E://毕业设计//源码//orderonline//src//main//resources//static//product//";
         // 解决中文问题，liunx下中文路径，图片显示问题
          fileName = UUID.randomUUID() + suffixName;
          String pathname = filePath + fileName;
         File dest = new File(pathname);
         // 检测是否存在目录
         if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
+            System.out.println("目录不存在");
+            return null;
         }
         try {
             file.transferTo(dest);
-//            return "上传成功";
+            System.out.println("上传成功");
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {

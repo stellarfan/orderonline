@@ -96,7 +96,7 @@
     </li>
 
     <!-- 迭代生成页码 -->
-    <li th:each="i : ${#numbers.sequence(1, productList.totalPages)}"
+    <li th:each="i : ${#numbers.sequence(0, productList.totalPages)}"
         th:classappend="${(productList.number + 1) eq i} ? 'active' : ''" >
         <a class="page-link"  th:href="'/admin/showProductByPage?pageNumber=' + ${i - 1}">
             <span th:text="${i}"></span>
