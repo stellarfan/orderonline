@@ -1,11 +1,9 @@
 package com.chao.bysj.service;
 
-import com.chao.bysj.mapper.MenuMapper;
-import com.chao.bysj.mapper.ProductMapper;
+
 import com.chao.bysj.po.Menu;
 import com.chao.bysj.po.Product;
 import com.chao.bysj.repository.MenuRepository;
-import com.chao.bysj.repository.ProductRepository;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +16,6 @@ import java.util.List;
  */
 @Service
 public class ManuManageService {
-    @Autowired
-    MenuMapper menuMapper;
     @Autowired
     MenuRepository menuRepository;
 
@@ -68,8 +64,8 @@ public class ManuManageService {
      */
     public String updateMenu(Model model, Menu menu){
         Menu exitMenu = menuRepository.findOne(menu.getId());
-        if(exitMenu.getCode()!=menu.getCode()){
-            if(menuMapper.selectByCode(menu.getCode())!=null){
+        if(!exitMenu.getCode().equals(menu.getCode())){
+            if(menuRepository.findByCode(menu.getCode())!=null){
                 model.addAttribute("errMsg","该数字标识已存在，请输入其他数字");
                 return showMenu(model);
             }
@@ -92,7 +88,7 @@ public class ManuManageService {
             return showMenu(model);
         }
         try{
-            menuMapper.delMenu(id);
+            menuRepository.delete(id);
         }catch (Exception e){
             logger.error("菜品删除失败",e);
         }

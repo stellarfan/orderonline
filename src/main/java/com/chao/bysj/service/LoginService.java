@@ -1,7 +1,5 @@
 package com.chao.bysj.service;
 
-import com.chao.bysj.mapper.AdminMapper;
-import com.chao.bysj.mapper.UserMapper;
 import com.chao.bysj.po.Admin;
 import com.chao.bysj.po.Item;
 import com.chao.bysj.po.User;
@@ -11,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
@@ -22,10 +20,6 @@ import java.util.Map;
  */
 @Service
 public class LoginService {
-    @Autowired
-    private AdminMapper adminMapper;
-    @Autowired
-    private UserMapper userMapper;
     @Autowired
     private UserRepository userRepository;
     @Autowired

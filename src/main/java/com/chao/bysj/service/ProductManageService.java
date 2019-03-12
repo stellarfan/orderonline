@@ -1,6 +1,5 @@
 package com.chao.bysj.service;
 
-import com.chao.bysj.mapper.ProductMapper;
 import com.chao.bysj.po.Menu;
 import com.chao.bysj.po.Product;
 import com.chao.bysj.repository.MenuRepository;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,8 +17,6 @@ import java.util.List;
  */
 @Service
 public class ProductManageService {
-    @Autowired
-    ProductMapper productMapper;
     @Autowired
     ProductRepository productRepository;
     @Autowired
@@ -57,7 +53,7 @@ public class ProductManageService {
      */
     public String showProductsLike(Model model,String key){
         System.out.println(key);
-        List<Product> productList = productMapper.selectByName(key);
+        List<Product> productList = productRepository.selectByName(key);
         System.out.println(productList);
         model.addAttribute("productList",productList);
         return "products";

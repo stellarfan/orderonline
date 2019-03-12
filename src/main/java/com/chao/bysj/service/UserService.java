@@ -1,8 +1,5 @@
 package com.chao.bysj.service;
 
-import com.chao.bysj.mapper.MenuMapper;
-import com.chao.bysj.mapper.ProductMapper;
-import com.chao.bysj.mapper.UserMapper;
 import com.chao.bysj.po.*;
 import com.chao.bysj.repository.AddressRepository;
 import com.chao.bysj.repository.MenuRepository;
@@ -11,7 +8,6 @@ import com.chao.bysj.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
